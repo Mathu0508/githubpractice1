@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Webpage Creation using Bootstrap</title>
+    <link rel="icon" href="avator.jpg" type="image/jpg">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        .btn-custom-size {
+            font-size: 24px;
+            padding: 10px 30px;
+            font-size: medium ;
+        }
+        .custom-margin-left {
+    margin-left: 0; /* Adjust as needed */
+}
+
+        /* Change the color of the next and previous icons to black */
+        .carousel-control-prev-icon, .carousel-control-next-icon {
+            color: black !important; /* Ensures the background is black */
+}
+
+        .card {
+            background-color: rgba(255, 255, 255, 0.2);
+            /* opacity: 30%; */
+            border-radius:5px;
+            width:100%;
+            opacity:80% ;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        /* Custom border for the cards */
+        .custom-border-bottom {
+            border-bottom: 5px solid blueviolet; /* Custom thickness and color */
+        }
+
+        .custom-border-bottom-danger {
+            border-bottom: 5px solid red; /* Custom thickness and color for 'danger' card */
+        }
+
+        .custom-border-bottom-info {
+            border-bottom: 5px solid #17a2b8; /* Custom thickness and color for 'info' card */
+        }
+      /* Add a custom box shadow */
+.shadow {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* You can modify the shadow size and color */
+}
+
+/* Optional: Control the column width */
+.col img {
+  max-width:50%; /* Make sure images don't stretch beyond the container */
+  height: auto;
+}
+.button-text{
+    box-shadow:white;
+    
+}
+/* Ensure that all columns have the same height */
+.row {
+  height: 100%; /* Make the row take full height */
+}
+
+
+.col-2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%; /* Ensure each column takes up full height of the row */
+}
+
+/* Optional: Control the size of images within the column */
+img.img-fluid {
+  max-width: 80%; /* Adjust as needed */
+  max-height: 80%; /* Ensures the images are scaled proportionally */
+  height: auto;
+  margin: 0 auto;
+}
+/* Hover effect for image containers */
+/* Hover effect for image containers */
+/* Hover effect for image containers (scale and shadow) */
+.p-3:hover {
+  transform: scale(1.05); /* Slight zoom effect */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for transform and shadow */
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2); /* Optional shadow effect */
+}
+
+/* Smooth transition for the image inside the container */
+.p-3 img {
+  transition: transform 0.3s ease; /* Smooth transition for the image itself */
+}
+
+/* Optional: You can keep this if you want smooth image scaling within .p-3 */
+.p-3:hover img {
+  transform: scale(1.05); /* Slight zoom effect for the image */
+}
+/* Box shadow for input fields */
+input.form-control {
+  transition: all 0.3s ease; /* Smooth transition for all properties */
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for inputs */
+  padding: 10px;
+}
+
+/* Hover effect for input fields */
+input.form-control:hover {
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Stronger shadow when hovering */
+  transform: scale(1.02); /* Slight zoom effect on hover */
+}
+
+/* Focus effect for input fields */
+input.form-control:focus {
+  outline: none; /* Remove default outline */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3); /* Darker shadow when focused */
+}
+.social-media {
+                display:flex;
+                align-items:center;
+                margin-left:50px;
+                justify-content: flex-start;
+                gap:20px;
+                background-color: black;
+                padding-top:0;
+            }    
+
+            .social-media a {
+                color:white;            
+                font-size:20px;       
+                margin-top:0px; 
+                padding: -10px; 
+                transition: color 0.3s ease; 
+            }
+
+            .social-media a:hover {
+            color: #00aced;        
+            }
+</style>
+<script>
+    function allowOnlyNumbers(event) {
+            var charCode = event.which || event.keyCode;
+            if (charCode < 48 || charCode > 57) {
+                event.preventDefault();
+                alert("Please enter only numeric digits.");
+                return false;
+            }
+            return true;
+        }
+
+      
+        function validatePhoneNumber(event) {
+            var phoneNumber = event.target.value;
+            if (phoneNumber.length > 10) {
+                event.target.value = phoneNumber.substring(0, 10); 
+                alert("Phone number must be exactly 10 digits.");
+            }
+        }
+        function allowOnlyAlphabets(event) {
+            var charCode = event.which || event.keyCode;
+            if ((charCode >= 48 && charCode <= 57)) {
+                alert("Numbers are not allowed in this field!");
+                return false;
+            }
+            if ((charCode >= 65 && charCode <= 90) || (charCode >= 97 && charCode <= 122) || charCode == 32) {
+                return true;
+            }
+            return false;
+        }
+
+  
+        function validateForm() {
+            var name = document.getElementById("name").value;
+            if (!/^[A-Za-z\s]+$/.test(name)) {
+                alert("Please enter only alphabetic characters and spaces.");
+                return false;
+            }
+            return true;
+        }
+</script>
+</head>
+<body>
+
+<div class="container-fluid m-5 p-0">
+    <div class="row">
+        <div class="col">
+            <div class="h1 text-danger">sdi</div>
+        </div>
+        <div class="col  me-5 d-flex justify-content-end">
+            <p class="text-primary mb-0 text-end me-3">I like Developers</p>
+            <span>
+            <button type="button" class="btn btn-danger btn-sm">King</button>
+        </span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-6">
+            <h2 class="mt-0">Hire seriously experienced, quality<br>
+                conscious <span class="text-primary">programmers</span> who take pride<br>
+                in their work
+            </h2>
+            <p class="text-dark mb-0">Interview within 48 Hours, get started the day after</p><br> <!-- Removed margin-bottom -->
+            <button type="button" class="btn btn-primary btn-lg btn-custom-size">Hire Today</button>
+        </div>
+        <div class="col-6 mt-0 pt-0 d-flex justify-content-center">
+            <img src="office2.jpg" class="img-fluid" width="60%" height="150%" style="margin-top: 10px;"> <!-- Adjust margin-top to reduce space -->
+        </div>
+    </div>
+          <p style="font-weight: bold;">4000+ Clients</p>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-xs-12">
+                <!-- Carousel Section -->
+                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                    <!-- Indicators -->
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 5"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="5" aria-label="Slide 6"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="6" aria-label="Slide 7"></button>
+                    </div>
+    
+                    <!-- Carousel Inner -->
+                    <div class="carousel-inner">
+                        <!-- First Carousel Item -->
+                        <div class="carousel-item active">
+                            <div class="row">
+                                <div class="col">
+                                    <img src="image_carousel/benefit.png" class="img-fluid" alt="Benefit Image">
+                                </div>
+                                <div class="col">
+                                    <img src="image_carousel/custom.png" class="img-fluid" alt="Custom Image">
+                                </div>
+                                <div class="col">
+                                    <img src="image_carousel/mamaearth.jpg" class="img-fluid" alt="Mamaearth Image">
+                                </div>
+                                <div class="col">
+                                    <img src="image_carousel/ideal.png" class="img-fluid" alt="Ideal Image">
+                                </div>
+                                <div class="col">
+                                    <img src="image_carousel/marvell.png" class="img-fluid" alt="Marvell Image">
+                                </div>
+                                <div class="col">
+                                    <img src="image_carousel/pepsi.jpg" class="img-fluid" alt="Pepsi Image">
+                                </div>
+                                <div class="col">
+                                    <img src="image_carousel/pigment.png" class="img-fluid" alt="Pigment Image">
+                                </div>
+                            </div>
+                        </div>
+    
+                        <!-- Second Carousel Item -->
+                        <div class="carousel-item">
+                            <div class="row">
+                                <div class="col">
+                                    <img src="image_carousel/custom.png" class="img-fluid" alt="Custom Image">
+                                </div>
+                                <div class="col">
+                                    <img src="image_carousel/mamaearth.jpg" class="img-fluid" alt="Mamaearth Image">
+                                </div>
+                                <div class="col">
+                                    <img src="image_carousel/ideal.png" class="img-fluid" alt="Ideal Image">
+                                </div>
+                                <div class="col">
+                                    <img src="image_carousel/marvell.png" class="img-fluid" alt="Marvell Image">
+                                </div>
+                                <div class="col">
+                                    <img src="image_carousel/pepsi.jpg" class="img-fluid" alt="Pepsi Image">
+                                </div>
+                                <div class="col">
+                                    <img src="image_carousel/pigment.png" class="img-fluid" alt="Pigment Image">
+                                </div>
+                                <div class="col">
+                                    <img src="image_carousel/benefit.png" class="img-fluid" alt="Benefit Image">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="row">
+                                <div class="col">
+                                    <img src="image_carousel/mamaearth.jpg" class="img-fluid" alt="Mamaearth Image">
+                                </div>
+                                <div class="col">
+                                    <img src="image_carousel/ideal.png" class="img-fluid" alt="Ideal Image">
+                                </div>
+                                <div class="col">
+                                    <img src="image_carousel/marvell.png" class="img-fluid" alt="Marvell Image">
+                                </div>
+                                <div class="col">
+                                    <img src="image_carousel/pepsi.jpg" class="img-fluid" alt="Pepsi Image">
+                                </div>
+                                <div class="col">
+                                    <img src="image_carousel/pigment.png" class="img-fluid" alt="Pigment Image">
+                                </div>
+                                <div class="col">
+                                    <img src="image_carousel/benefit.png" class="img-fluid" alt="Benefit Image">
+                                </div>
+                                <div class="col">
+                                    <img src="image_carousel/custom.png" class="img-fluid" alt="Custom Image">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="row">
+                                <div class="col">
+                                    <img src="image_carousel/ideal.png" class="img-fluid" alt="Ideal Image">
+                                </div>
+                                <div class="col">
+                                    <img src="image_carousel/marvell.png" class="img-fluid" alt="Marvell Image">
+                                </div>
+                                <div class="col">
+                                    <img src="image_carousel/pepsi.jpg" class="img-fluid" alt="Pepsi Image">
+                                </div>
+                                <div class="col">
+                                    <img src="image_carousel/pigment.png" class="img-fluid" alt="Pigment Image">
+                                </div>
+                                <div class="col">
+                                    <img src="image_carousel/benefit.png" class="img-fluid" alt="Benefit Image">
+                                </div>
+                                <div class="col">
+                                    <img src="image_carousel/custom.png" class="img-fluid" alt="Custom Image">
+                                </div>
+                                <div class="col">
+                                    <img src="image_carousel/mamaearth.jpg" class="img-fluid" alt="Mamaearth Image">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item ">
+                            <div class="row">
+                                <div class="col">
+                                    <img src="image_carousel/marvell.png" class="img-fluid" alt="Marvell Image">
+                                </div>
+                                <div class="col">
+                                    <img src="image_carousel/pepsi.jpg" class="img-fluid" alt="Pepsi Image">
+                                </div>
+                                <div class="col">
+                                    <img src="image_carousel/pigment.png" class="img-fluid" alt="Pigment Image">
+                                </div>
+                                <div class="col">
+                                    <img src="image_carousel/benefit.png" class="img-fluid" alt="Benefit Image">
+                                </div>
+                                <div class="col">
+                                    <img src="image_carousel/custom.png" class="img-fluid" alt="Custom Image">
+                                </div>
+                                <div class="col">
+                                    <img src="image_carousel/mamaearth.jpg" class="img-fluid" alt="Mamaearth Image">
+                                </div>
+                                <div class="col">
+                                    <img src="image_carousel/ideal.png" class="img-fluid" alt="Ideal Image">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="row">
+                                <div class="col">
+                                    <img src="image_carousel/pepsi.jpg" class="img-fluid" alt="Pepsi Image">
+                                </div>
+                                <div class="col">
+                                    <img src="image_carousel/pigment.png" class="img-fluid" alt="Pigment Image">
+                                </div>
+                                <div class="col">
+                                    <img src="image_carousel/benefit.png" class="img-fluid" alt="Benefit Image">
+                                </div>
+                                <div class="col">
+                                    <img src="image_carousel/custom.png" class="img-fluid" alt="Custom Image">
+                                </div>
+                                <div class="col">
+                                    <img src="image_carousel/mamaearth.jpg" class="img-fluid" alt="Mamaearth Image">
+                                </div>
+                                <div class="col">
+                                    <img src="image_carousel/ideal.png" class="img-fluid" alt="Ideal Image">
+                                </div>
+                                <div class="col">
+                                    <img src="image_carousel/marvell.png" class="img-fluid" alt="Marvell Image">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="row">
+                                <div class="col">
+                                    <img src="image_carousel/pigment.png" class="img-fluid" alt="Pigment Image">
+                                </div>
+                                <div class="col">
+                                    <img src="image_carousel/benefit.png" class="img-fluid" alt="Benefit Image">
+                                </div>
+                                <div class="col">
+                                    <img src="image_carousel/custom.png" class="img-fluid" alt="Custom Image">
+                                </div>
+                                <div class="col">
+                                    <img src="image_carousel/mamaearth.jpg" class="img-fluid" alt="Mamaearth Image">
+                                </div>
+                                <div class="col">
+                                    <img src="image_carousel/ideal.png" class="img-fluid" alt="Ideal Image">
+                                </div>
+                                <div class="col">
+                                    <img src="image_carousel/marvell.png" class="img-fluid" alt="Marvell Image">
+                                </div>
+                                <div class="col">
+                                    <img src="image_carousel/pepsi.jpg" class="img-fluid" alt="Pepsi Image">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Add more carousel items as needed -->
+                    </div>
+    
+                    <!-- Carousel Controls -->
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div><br><br><br>
+    <div class="h2 text-center text-dark">Engagement Model</div> <br>
+    <div class="container-fluid custom-margin-left">
+        <div class="row g-5 d-flex justify-content-start">
+            <!-- Card 1 -->
+            <div class="col-md-4 mb-4"> <!-- Changed col-3 to col-md-4 -->
+                <div class="card custom-border-bottom "> <!-- Changed w-150 to w-100 for full width -->
+                    <h4 class="card-title text-center mt-3 text-primary">350+ Experts</h4>
+                    <div class="card-body">
+                        <p class="text-center">Full Stack Developers<br>Sr. Programmers<br>App Developers, UX Specialist<br>Cloud Administrators</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 2 -->
+            <div class="col-md-4 mb-4"> <!-- Changed col-3 to col-md-4 -->
+                <div class="card custom-border-bottom-danger "> <!-- Changed w-150 to w-100 for full width -->
+                    <h4 class="card-title text-center mt-3 text-danger">Process</h4>
+                    <div class="card-body">
+                        <p class="text-center">Excellent Communication<br>Full Project Visibility<br>Tested Code, Daily Updates<br>Daily Zone Match</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 3 -->
+            <div class="col-md-4 mb-4"> <!-- Changed col-3 to col-md-4 -->
+                <div class="card custom-border-bottom-info "> <!-- Changed w-150 to w-100 for full width -->
+                    <h4 class="card-title text-center mt-3 text-info">Average Cost</h4>
+                    <div class="card-body">
+                        <p class="text-center">$ 3800/Month<br>Monthly Contracts<br>Paypal, CC, Wise<br>Checks, Wire</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><br>
+    <div class="container-fluid mt-5">
+        <div class="h2 text-center text-dark">Choose your Programmer</div><br>
+        <a href="#" class="text-primary">Select skills</a><br><br>
+        <h5> Mobile Apps</h5>
+            <div class="row g-3">
+                <div class="col-2 d-flex justify-content-center align-items-center" style="height: 80px; width: 270px;">
+                    <div class="p-3 border bg-white mx-auto shadow w-100 h-100 d-flex justify-content-center align-items-center">
+                        <img src="mobile_apps/apple.jpg" alt="Icon" class="img-fluid" style="max-height: 150px; object-fit: contain;">
+                    </div>
+                </div>
+                <div class="col-2 d-flex justify-content-center align-items-center" style="height: 80px; width: 270px;">
+                    <div class="p-3 border bg-white mx-auto shadow w-100 h-100 d-flex justify-content-center align-items-center">
+                        <img src="mobile_apps/android.jpg" alt="Icon" class="img-fluid" style="max-height: 150px; object-fit: contain;">
+                    </div>
+                </div>
+                <div class="col-2 d-flex justify-content-center align-items-center" style="height: 80px; width: 270px;">
+                    <div class="p-3 border bg-white mx-auto shadow w-100 h-100 d-flex justify-content-center align-items-center">
+                        <img src="mobile_apps/react.png" alt="Icon" class="img-fluid" style="max-height: 150px; object-fit: contain;">
+                    </div>
+                </div>
+                <div class="col-2 d-flex justify-content-center align-items-center" style="height: 80px; width: 270px;">
+                    <div class="p-3 border bg-white mx-auto shadow w-100 h-100 d-flex justify-content-center align-items-center">
+                        <img src="mobile_apps/swift.png" alt="Icon" class="img-fluid" style="max-height: 150px; object-fit: contain;">
+                    </div>
+                </div>
+                <div class="col-2 d-flex justify-content-center align-items-center" style="height: 80px; width: 270px;">
+                    <div class="p-3 border bg-white mx-auto shadow w-100 h-100 d-flex justify-content-center align-items-center">
+                        <img src="mobile_apps/flutter.jpg" alt="Icon" class="img-fluid" style="max-height: 150px; object-fit: contain;">
+                    </div>
+                </div>
+                <div class="col-2 d-flex justify-content-center align-items-center" style="height: 80px; width: 270px;">
+                    <div class="p-3 border bg-white mx-auto shadow w-100 h-100 d-flex justify-content-center align-items-center">
+                        <img src="mobile_apps/kotlin.png" alt="Icon" class="img-fluid" style="max-height: 150px; object-fit: contain;">
+                    </div>
+                </div>
+            </div><br>
+            <div class="row g-3">
+                <div class="col-2 d-flex justify-content-center align-items-center" style="height: 80px; width: 270px;">
+                    <div class="p-3 border bg-white mx-auto shadow w-100 h-100 d-flex justify-content-center align-items-center">
+                        <img src="mobile_apps/moment.jpg" alt="Icon" class="img-fluid" style="max-height: 150px; object-fit: contain;">
+                    </div>
+                </div>
+                <div class="col-2 d-flex justify-content-center align-items-center" style="height: 80px; width: 270px;">
+                    <div class="p-3 border bg-white mx-auto shadow w-100 h-100 d-flex justify-content-center align-items-center">
+                        <img src="mobile_apps/Native.jpg" alt="Icon" class="img-fluid" style="max-height: 150px; object-fit: contain;">
+                    </div>
+                </div>
+                <div class="col-2 d-flex justify-content-center align-items-center" style="height: 80px; width: 270px;">
+                    <div class="p-3 border bg-white mx-auto shadow w-100 h-100 d-flex justify-content-center align-items-center">
+                        <img src="mobile_apps/vue.png" alt="Icon" class="img-fluid" style="max-height: 150px; object-fit: contain;">
+                    </div>
+                </div>
+                <div class="col-2 d-flex justify-content-center align-items-center" style="height: 80px; width: 270px;">
+                    <div class="p-3 border bg-white mx-auto shadow w-100 h-100 d-flex justify-content-center align-items-center">
+                        <img src="mobile_apps/ionic.jpg" alt="Icon" class="img-fluid" style="max-height: 150px; object-fit: contain;">
+                    </div>
+                </div>
+                <div class="col-2 d-flex justify-content-center align-items-center" style="height: 80px; width: 270px;">
+                    <div class="p-3 border bg-white mx-auto shadow w-100 h-100 d-flex justify-content-center align-items-center">
+                        <img src="mobile_apps/Mobileangular.jpg" alt="Icon" class="img-fluid" style="max-height: 150px; object-fit: contain;">
+                    </div>
+                </div>
+                <div class="col-2 d-flex justify-content-center align-items-center" style="height: 80px; width: 270px;">
+                    <div class="p-3 border bg-white mx-auto shadow w-100 h-100 d-flex justify-content-center align-items-center">
+                        <img src="mobile_apps/help.jpg" alt="Icon" class="img-fluid" style="max-height: 150px; object-fit: contain;">
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div><br>
+        <div class="container-fluid m-5">
+            <h5>Fullstack/Web/Back-end</h5><br>
+          <div class="row g-3">
+            <!-- Column 1 -->
+            <div class="col-2 d-flex justify-content-center align-items-center" style="height: 80px; width: 270px;">
+              <div class="p-3 border bg-white mx-auto shadow w-100 h-100 d-flex justify-content-center align-items-center">
+                <img src="fullstack_apps/angular.png" alt="Icon" class="img-fluid">
+              </div>
+            </div>
+            <!-- Column 2 -->
+            <div class="col-2 d-flex justify-content-center align-items-center" style="height: 80px; width: 270px;">
+              <div class="p-3 border bg-white mx-auto shadow w-100 h-100 d-flex justify-content-center align-items-center">
+                <img src="fullstack_apps/html.png" alt="Icon" class="img-fluid">
+              </div>
+            </div>
+            <!-- Column 3 -->
+            <div class="col-2 d-flex justify-content-center align-items-center" style="height: 80px; width: 270px;">
+              <div class="p-3 border bg-white mx-auto shadow w-100 h-100 d-flex justify-content-center align-items-center">
+                <img src="fullstack_apps/node.png" alt="Icon" class="img-fluid">
+              </div>
+            </div>
+            <!-- Column 4 -->
+            <div class="col-2 d-flex justify-content-center align-items-center" style="height: 80px; width: 270px;">
+              <div class="p-3 border bg-white mx-auto shadow w-100 h-100 d-flex justify-content-center align-items-center">
+                <img src="fullstack_apps/momgo.jpg" alt="Icon" class="img-fluid">
+              </div>
+            </div>
+            <!-- Column 5 -->
+            <div class="col-2 d-flex justify-content-center align-items-center" style="height: 80px; width: 270px;">
+              <div class="p-3 border bg-white mx-auto shadow w-100 h-100 d-flex justify-content-center align-items-center">
+                <img src="fullstack_apps/php.jpg" alt="Icon" class="img-fluid">
+              </div>
+            </div>
+            <!-- Column 6 -->
+            <div class="col-2 d-flex justify-content-center align-items-center" style="height: 80px; width: 270px;">
+              <div class="p-3 border bg-white mx-auto shadow w-100 h-100 d-flex justify-content-center align-items-center">
+                <img src="fullstack_apps/asp.jpg" alt="Icon" class="img-fluid">
+              </div>
+            </div>
+          </div>
+        <br>
+        <div class="row g-3">
+            <div class="col-2 d-flex justify-content-center align-items-center" style="height: 80px; width: 270px;">
+                <div class="p-3 border bg-white mx-auto shadow w-100 h-100 d-flex justify-content-center align-items-center">
+                    <img src="fullstack_apps/mysql.png" alt="Icon" class="img-fluid">
+                  </div>
+                </div>
+                <div class="col-2 d-flex justify-content-center align-items-center" style="height: 80px; width: 270px;">
+                    <div class="p-3 border bg-white mx-auto shadow w-100 h-100 d-flex justify-content-center align-items-center">
+                    <img src="fullstack_apps/sqlserver.jpg" alt="Icon" class="img-fluid">
+                  </div>
+                </div>
+                <div class="col-2 d-flex justify-content-center align-items-center" style="height: 80px; width: 270px;">
+                    <div class="p-3 border bg-white mx-auto shadow w-100 h-100 d-flex justify-content-center align-items-center">
+                    <img src="fullstack_apps/nosql.png" alt="Icon" class="img-fluid">
+                  </div>
+                </div>
+                <div class="col-2 d-flex justify-content-center align-items-center" style="height: 80px; width: 270px;">
+                    <div class="p-3 border bg-white mx-auto shadow w-100 h-100 d-flex justify-content-center align-items-center">
+                    <img src="fullstack_apps/sqllite.jpg" alt="Icon" class="img-fluid">
+                  </div>
+                </div>
+                <div class="col-2 d-flex justify-content-center align-items-center" style="height: 80px; width: 270px;">
+                    <div class="p-3 border bg-white mx-auto shadow w-100 h-100 d-flex justify-content-center align-items-center">
+                    <img src="fullstack_apps/oracle.png" alt="Icon" class="img-fluid">
+                  </div>
+                </div>
+                <div class="col-2 d-flex justify-content-center align-items-center" style="height: 80px; width: 270px;">
+                    <div class="p-3 border bg-white mx-auto shadow w-100 h-100 d-flex justify-content-center align-items-center">
+                    <img src="fullstack_apps/php.jpg" alt="Icon" class="img-fluid">
+                  </div>
+                </div>
+              </div><br>
+              <div class="row g-3">
+                <div class="col-2 d-flex justify-content-center align-items-center" style="height: 80px; width: 270px;">
+                    <div class="p-3 border bg-white mx-auto shadow w-100 h-100 d-flex justify-content-center align-items-center">
+                    <img src="fullstack_apps/cms.jpg" alt="Icon" class="img-fluid">
+                  </div>
+                </div>
+                <div class="col-2 d-flex justify-content-center align-items-center" style="height: 80px; width: 270px;">
+                    <div class="p-3 border bg-white mx-auto shadow w-100 h-100 d-flex justify-content-center align-items-center">
+                    <img src="fullstack_apps/magento.png" alt="Icon" class="img-fluid">
+                  </div>
+                </div>
+                <div class="col-2 d-flex justify-content-center align-items-center" style="height: 80px; width: 270px;">
+                    <div class="p-3 border bg-white mx-auto shadow w-100 h-100 d-flex justify-content-center align-items-center">
+                    <img src="fullstack_apps/woo-commerce.png" alt="Icon" class="img-fluid">
+                  </div>
+                </div>
+                <div class="col-2 d-flex justify-content-center align-items-center" style="height: 80px; width: 270px;">
+                    <div class="p-3 border bg-white mx-auto shadow w-100 h-100 d-flex justify-content-center align-items-center">
+                    <img src="fullstack_apps/laravel.jpg" alt="Icon" class="img-fluid">
+                  </div>
+                </div>
+                <div class="col-2 d-flex justify-content-center align-items-center" style="height: 80px; width: 270px;">
+                    <div class="p-3 border bg-white mx-auto shadow w-100 h-100 d-flex justify-content-center align-items-center">
+                    <img src="fullstack_apps/zend.png" alt="Icon" class="img-fluid">
+                  </div>
+                </div>
+                <div class="col-2 d-flex justify-content-center align-items-center" style="height: 80px; width: 270px;">
+                    <div class="p-3 border bg-white mx-auto shadow w-100 h-100 d-flex justify-content-center align-items-center">
+                    <img src="fullstack_apps/python.png" alt="Icon" class="img-fluid">
+                  </div>
+                </div>
+              </div><br>
+              <div class="row g-3">
+                <div class="col-2 d-flex justify-content-center align-items-center" style="height: 80px; width: 270px;">
+                    <div class="p-3 border bg-white mx-auto shadow w-100 h-100 d-flex justify-content-center align-items-center">
+                    <img src="fullstack_apps/sas.png" alt="Icon" class="img-fluid">
+                  </div>
+                </div>
+                <div class="col-2 d-flex justify-content-center align-items-center" style="height: 80px; width: 270px;">
+                    <div class="p-3 border bg-white mx-auto shadow w-100 h-100 d-flex justify-content-center align-items-center">
+                    <img src="fullstack_apps/sas.png" alt="Icon" class="img-fluid">
+                  </div>
+                </div>
+                <div class="col-2 d-flex justify-content-center align-items-center" style="height: 80px; width: 270px;">
+                    <div class="p-3 border bg-white mx-auto shadow w-100 h-100 d-flex justify-content-center align-items-center">
+                    <img src="fullstack_apps/ott.jpg" alt="Icon" class="img-fluid">
+                  </div>
+                </div>
+                <div class="col-2 d-flex justify-content-center align-items-center" style="height: 80px; width: 270px;">
+                    <div class="p-3 border bg-white mx-auto shadow w-100 h-100 d-flex justify-content-center align-items-center">
+                    <img src="fullstack_apps/block.jpg" alt="Icon" class="img-fluid">
+                  </div>
+                </div>
+                <div class="col-2 d-flex justify-content-center align-items-center" style="height: 80px; width: 270px;">
+                    <div class="p-3 border bg-white mx-auto shadow w-100 h-100 d-flex justify-content-center align-items-center">
+                    <img src="fullstack_apps/AWS.png" alt="Icon" class="img-fluid">
+                  </div>
+                </div>
+                <div class="col-2 d-flex justify-content-center align-items-center" style="height: 80px; width: 270px;">
+                    <div class="p-3 border bg-white mx-auto shadow w-100 h-100 d-flex justify-content-center align-items-center">
+                    <img src="fullstack_apps/azure.webp" alt="Icon" class="img-fluid">
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+            <div class="container-fluid m-5">
+            <a href="#" class="text-primary">Select a Role</a><br><br>
+                <div class="row g-5">
+                    <div class="col-lg-2">
+                        <div class="p-3 border bg-white mx-auto shadow d-flex justify-content-center align-items-center h-100">Full Stack Developer</div>
+                    </div>
+                    <div class="col-lg-2">
+                        <div class="p-3 border bg-white mx-auto shadow d-flex justify-content-center align-items-center h-100">Web Developer</div>
+                    </div>
+                    <div class="col-lg-2">
+                        <div class="p-3 border bg-white mx-auto shadow d-flex justify-content-center align-items-center h-100">App Developer</div>
+                    </div>
+                    <div class="col-lg-2">
+                        <div class="p-3 border bg-white mx-auto shadow d-flex justify-content-center align-items-center h-100">UI/UX Designer</div>
+                    </div>
+                </div><br>
+                <div class="row g-5">
+                    <div class="col-lg-2">
+                        <div class="p-3 border bg-white mx-auto shadow d-flex justify-content-center align-items-center h-100">Software Programmers</div>
+                    </div>
+                    <div class="col-lg-2">
+                        <div class="p-3 border bg-white mx-auto shadow d-flex justify-content-center align-items-center h-100">Project Manager</div>
+                    </div>
+                    <div class="col-lg-2">
+                        <div class="p-3 border bg-white mx-auto shadow d-flex justify-content-center align-items-center h-100">System Architect</div>
+                    </div>
+                    <div class="col-lg-2">
+                        <div class="p-3 border bg-white mx-auto shadow d-flex justify-content-center align-items-center h-100">Cloud Administrator</div>
+                    </div>
+                </div><br>
+                <div class="row g-5">
+                    <div class="col-lg-2">
+                        <div class="p-3 border bg-white mx-auto shadow d-flex justify-content-center align-items-center h-100">DB Analyst</div>
+                    </div>
+                    <div class="col-lg-2">
+                        <div class="p-3 border bg-white mx-auto shadow d-flex justify-content-center align-items-center h-100">Quality Assurance</div>
+                    </div>
+                    <div class="col-lg-2">
+                        <div class="p-3 border bg-white mx-auto shadow d-flex justify-content-center align-items-center h-100">Hybrid App Developer</div>
+                    </div>
+                    <div class="col-lg-2">
+                        <div class="p-3 border bg-white mx-auto shadow d-flex justify-content-center align-items-center h-100">SEO/SMM Expert</div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid m-5">
+        <a href="#" class="text-primary">Your details</a><br><br>  
+        <form>
+            <div class="row">
+              <div class="col-3">
+                <input type="text" class="form-control" onkeypress="return allowOnlyAlphabets(event)" placeholder="Your Name" name="email">
+              </div>
+              <div class="col-3">
+                <input type="email" class="form-control" placeholder="Your Mail" name="email">
+              </div>
+              <div class="col-3">
+                <input type="tel" class="form-control" onkeypress="return allowOnlyNumbers(event)" oninput="validatePhoneNumber(event)" placeholder="Your Phone" name="phone">
+              </div>
+            </div><br>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="terms" name="terms">
+              <label class="form-check-label" for="terms">
+               Please send a signed agreement
+              </label>
+            </div><br>
+            <button type="button" class="btn btn-md btn-primary btn-custom-size">Submit</button>
+          </form><br>
+          <p>Would you rather talk right now? <a href="#" class="text-primary"> call + 14086218484</a></p>
+            </div>    
+        </div>         
+    </div>
+</div>
+    <div class="container-fluid bg-dark text-white m-5 mt-5 pt-2">
+       
+        <div class="row">
+            <div class="col-lg-2"> <!-- First column, using col-6 for equal size -->
+                <h6>Silicon Valley</h6>
+                <p>20663 4rb st. ste 201,<br>Saratoga CA 95070 <br>1.406.521.6161 <br>teams@sdi.la</p>
+            </div>
+            <div class="col-lg-2"> <!-- Second column, using col-6 for equal size -->
+                <h6>Silicon Valley</h6>
+                <p>20663 4rb st. ste 201,<br>Saratoga CA 95070 <br>1.406.521.6161 <br>teams@sdi.la</p>   
+            </div>
+            <div class="col-lg-2"> <!-- Second column, using col-6 for equal size -->
+                <h6>India</h6>
+                <img src="fullstack_apps/india.png.png"alt="India">
+            </div>
+            <div class="col-md-6 d-flex justify-content-end align-items-top">
+                <h4 class="text-white mt-3 mr-3 align-items-top">Clutch</h4>
+                <!-- Add 5 stars -->
+                <i class="fas fa-star text-danger"></i>
+                <i class="fas fa-star text-danger"></i>
+                <i class="fas fa-star text-danger"></i>
+                <i class="fas fa-star text-danger"></i>
+                <i class="fas fa-star text-danger"></i>
+            </div>
+            <div class="col-lg-12 d-flex justify-content-end align-items-end">
+                <div class="social-media">
+                    <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+  </body>
+</html>  
